@@ -3,21 +3,20 @@ import {
 	FiLinkedin,
 	FiInstagram,
 } from 'react-icons/fi';
-import AppFooterCopyright from './AppFooterCopyright';
 
 const socialLinks = [
 	{
-		id: 2,
+		id: 1,
 		icon: <FiGithub />,
 		url: 'https://github.com/DarianaSanchez',
 	},
 	{
-		id: 4,
+		id: 2,
 		icon: <FiLinkedin />,
 		url: 'https://www.linkedin.com/in/darianamsanchez/',
 	},
 	{
-		id: 5,
+		id: 3,
 		icon: <FiInstagram />,
 		url: 'https://www.instagram.com/mscsanchez/',
 	},
@@ -48,7 +47,19 @@ const AppFooter = () => {
 					</ul>
 				</div>
 
-				<AppFooterCopyright />
+				<div className="font-general-regular flex justify-center items-center text-center">
+					<div className="text-lg text-ternary-dark dark:text-ternary-light">
+						&copy; {new Date().getFullYear()}
+						.
+						<a
+							href="https://www.linkedin.com/in/darianamsanchez/"
+							target="__blank"
+							className="text-secondary-dark dark:text-secondary-light font-medium uppercase hover:underline hover:text-indigo-600 dark:hover:text-indigo-300 ml-1 duration-500"
+						>
+							Dariana Sanchez
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	);

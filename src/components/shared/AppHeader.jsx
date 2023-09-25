@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { FiHome, FiMenu, FiX } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import EditModal from '../EditModal';
 import { motion } from 'framer-motion';
+import { FiHome, FiMenu, FiX } from 'react-icons/fi';
 import Button from '../reusable/Button';
+import EditModal from '../EditModal';
 
 const AppHeader = () => {
 	const [showMenu, setShowMenu] = useState(false);
@@ -99,20 +99,6 @@ const AppHeader = () => {
 						Authors
 					</Link>
 					<Link
-						to="/projects"
-						className="block text-left text-lg text-primary-dark dark:text-ternary-light hover:text-secondary-dark dark:hover:text-secondary-light  sm:mx-4 mb-2 sm:py-2"
-						aria-label="Books"
-					>
-						Projects
-					</Link>
-					<Link
-						to="/about"
-						className="block text-left text-lg text-primary-dark dark:text-ternary-light hover:text-secondary-dark dark:hover:text-secondary-light  sm:mx-4 mb-2 sm:py-2 border-t-2 pt-3 sm:pt-2 sm:border-t-0 border-primary-light dark:border-secondary-dark"
-						aria-label="About Me"
-					>
-						About Me
-					</Link>
-					<Link
 						to="/contact"
 						className="block text-left text-lg text-primary-dark dark:text-ternary-light hover:text-secondary-dark dark:hover:text-secondary-light  sm:mx-4 mb-2 sm:py-2 border-t-2 pt-3 sm:pt-2 sm:border-t-0 border-primary-light dark:border-secondary-dark"
 						aria-label="Contact"
@@ -145,20 +131,6 @@ const AppHeader = () => {
 						aria-label="Authors"
 					>
 						Authors
-					</Link>
-					<Link
-						to="/projects"
-						className="block text-left text-lg text-primary-dark dark:text-ternary-light hover:text-secondary-dark dark:hover:text-secondary-light  sm:mx-4 mb-2 sm:py-2"
-						aria-label="Projects"
-					>
-						Projects
-					</Link>
-					<Link
-						to="/about"
-						className="block text-left text-lg text-primary-dark dark:text-ternary-light hover:text-secondary-dark dark:hover:text-secondary-light  sm:mx-4 mb-2 sm:py-2"
-						aria-label="About Me"
-					>
-						About Me
 					</Link>
 					<Link
 						to="/contact"

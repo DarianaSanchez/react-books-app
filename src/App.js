@@ -5,11 +5,11 @@ import AppFooter from './components/shared/AppFooter';
 import AppHeader from './components/shared/AppHeader';
 import './css/App.css';
 
-const About = lazy(() => import('./pages/AboutMe'));
-const Contact = lazy(() => import('./pages/Contact.jsx'));
+const Contact = lazy(() => import('./pages/Contact'));
 const Home = lazy(() => import('./pages/Home'));
-const Projects = lazy(() => import('./pages/Projects'));
-const ProjectSingle = lazy(() => import('./pages/ProjectSingle.jsx'));
+const Books = lazy(() => import('./pages/Books'));
+const BookSingle = lazy(() => import('./pages/BookSingle'));
+// const Authors = lazy(() => import('./pages/Authors'));
 
 
 function App() {
@@ -21,13 +21,9 @@ function App() {
 					<Suspense fallback={""}>
 						<Routes>
 							<Route path="/" element={<Home />} />
-							<Route path="projects" element={<Projects />} />
-							<Route
-								path="projects/single-project"
-								element={<ProjectSingle />}
-							/>
-
-							<Route path="about" element={<About />} />
+							<Route path="books" element={<Books />} />
+							<Route path="books/:id" element={<BookSingle />} />
+							{/* <Route path="authors" element={<Authors />} /> */}
 							<Route path="contact" element={<Contact />} />
 						</Routes>
 					</Suspense>

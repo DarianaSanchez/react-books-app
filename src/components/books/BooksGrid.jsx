@@ -1,25 +1,35 @@
-import { useContext } from 'react';
+import { useState, useEffect } from "react";
 import { FiSearch } from 'react-icons/fi';
-import ProjectSingle from './ProjectSingle';
-import { ProjectsContext } from '../../context/ProjectsContext';
-import ProjectsFilter from './ProjectsFilter';
+import BookItem from './BookItem';
+import { getBooks } from "../../services/books-api";
 
-const ProjectsGrid = () => {
-	const {
-		projects,
-		searchProject,
-		setSearchProject,
-		searchProjectsByTitle,
-		selectProject,
-		setSelectProject,
-		selectProjectsByCategory,
-	} = useContext(ProjectsContext);
+const BooksGrid = () => {
+	const [books, setBooks] = useState([]);
+	const [searchParam, setSearchParam] = useState("");
+
+	useEffect(() => {
+		let isCancelled = false;
+
+		getBooks()
+			.then((result) => {
+				if (!isCancelled) setBooks(result);
+			});
+
+		return () => isCancelled = true;
+		
+	}, []);
+
+	const handleChange = (event) => {
+		const param = event.target.value.trim();
+		setSearchParam(param);
+		getBooks(false, param).then((result) => setBooks(result));
+	};
 
 	return (
 		<section className="py-5 sm:py-10 mt-5 sm:mt-10">
 			<div className="text-center">
 				<p className="font-general-medium text-2xl sm:text-4xl mb-1 text-ternary-dark dark:text-ternary-light">
-					Projects
+					Books
 				</p>
 			</div>
 
@@ -33,7 +43,7 @@ const ProjectsGrid = () => {
                         mb-3
                         "
 				>
-					Search projects by title or filter by category
+					Search books by title, author or isbn
 				</h3>
 				<div
 					className="
@@ -61,16 +71,15 @@ const ProjectsGrid = () => {
 							<FiSearch className="text-ternary-dark dark:text-ternary-light w-5 h-5"></FiSearch>
 						</span>
 						<input
-							onChange={(e) => {
-								setSearchProject(e.target.value);
-							}}
+							value={searchParam}
+							onChange={handleChange}
 							className="font-general-medium 
                                 pl-3
                                 pr-1
                                 sm:px-4
                                 py-2
                                 border 
-                            border-gray-200
+                            	border-gray-200
                                 dark:border-secondary-dark
                                 rounded-lg
                                 text-sm
@@ -84,45 +93,26 @@ const ProjectsGrid = () => {
 							name="name"
 							type="search"
 							required=""
-							placeholder="Search Projects"
+							placeholder="Search Books"
 							aria-label="Name"
 						/>
 					</div>
-
-					<ProjectsFilter setSelectProject={setSelectProject} />
 				</div>
 			</div>
 
 			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-6 sm:gap-10">
-				{selectProject
-					? selectProjectsByCategory.map((project) => (
-							<ProjectSingle
-								title={project.title}
-								category={project.category}
-								image={project.img}
-								key={project.id}
-							/>
-					  ))
-					: searchProject
-					? searchProjectsByTitle.map((project) => (
-							<ProjectSingle
-								title={project.title}
-								category={project.category}
-								image={project.img}
-								key={project.id}
-							/>
-					  ))
-					: projects.map((project) => (
-							<ProjectSingle
-								title={project.title}
-								category={project.category}
-								image={project.img}
-								key={project.id}
-							/>
-					  ))}
+				{books.map((book) => (
+					<BookItem
+						id={book._id}
+						title={book.title}
+						authors={book.authors}
+						categories={book.categories}
+						thumbnailUrl={book.thumbnailUrl}
+					/>
+				))}
 			</div>
 		</section>
 	);
 };
 
-export default ProjectsGrid;
+export default BooksGrid;

@@ -1,26 +1,32 @@
-import { useContext } from 'react';
-import { FiClock, FiTag } from 'react-icons/fi';
-import SingleProjectContext from '../../context/SingleProjectContext';
+import { FiFileText, FiTag } from 'react-icons/fi';
 
-const ProjectSingleHeader = () => {
-	const { singleProjectData } = useContext(SingleProjectContext);
 
+const BookHeader = ({ id, title, pageCount, categories }) => {
 	return (
 		<div>
 			<p className="font-general-medium text-left text-3xl sm:text-4xl font-bold text-primary-dark dark:text-primary-light mt-14 sm:mt-20 mb-7">
-				{singleProjectData.ProjectHeader.title}
+				{title}
 			</p>
 			<div className="flex">
 				<div className="flex items-center mr-10">
-					<FiClock className="text-lg text-ternary-dark dark:text-ternary-light" />
+					<FiFileText className="text-lg text-ternary-dark dark:text-ternary-light" />
 					<span className="font-general-regular ml-2 leading-none text-primary-dark dark:text-primary-light">
-						{singleProjectData.ProjectHeader.publishDate}
+						{pageCount} pages
 					</span>
 				</div>
 				<div className="flex items-center">
 					<FiTag className="text-lg text-ternary-dark dark:text-ternary-light" />
 					<span className="font-general-regular ml-2 leading-none text-primary-dark dark:text-primary-light">
-						{singleProjectData.ProjectHeader.tags}
+						{categories &&
+							categories.map((category) => (
+								<span 
+									key={category}
+									class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-xs dark:bg-blue-900 dark:text-blue-300"
+								>
+									{category}
+								</span>
+							))
+						}
 					</span>
 				</div>
 			</div>
@@ -28,4 +34,4 @@ const ProjectSingleHeader = () => {
 	);
 };
 
-export default ProjectSingleHeader;
+export default BookHeader;
