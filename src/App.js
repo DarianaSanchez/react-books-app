@@ -20,8 +20,8 @@ function App() {
 					<AppHeader />
 					<Suspense fallback={""}>
 						<Routes>
-							<Route path="/" element={<Home />} />
-							<Route path="books" element={<Books />} />
+							<Route exact path="/" element={<Home />} />
+							<Route exact path="books" element={<Books />} />
 							<Route path="books/:id" element={<BookSingle />} />
 							{/* <Route path="authors" element={<Authors />} /> */}
 							<Route path="contact" element={<Contact />} />

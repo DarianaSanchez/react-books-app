@@ -19,22 +19,22 @@ const BookItem = ({ id, title, authors, categories, thumbnailUrl }) => {
 						<img
 							src={thumbnailUrl || NoBookCover}
 							alt="Single Book"
-							className="h-full w-full object-cover"
+							className="w-full h-full object-cover"
 						/>
 					</div>
 					<div className="text-center px-4 py-6 max-w-sm">
-						<p className="font-general-medium text-lg md:text-lg text-ternary-dark dark:text-ternary-light mb-2">
+						<p className="font-general-medium text-lg md:text-lg text-ternary-dark dark:text-ternary-light mb-4 h-1/4">
 							{title}
 						</p>
-						<span className="text-md text-ternary-dark dark:text-ternary-light">
+						<p className="text-md text-ternary-dark dark:text-ternary-light mb-4 h-1/4">
 							{authors && authors.map((x => x.full_name)).join(", ")}
-						</span>
-						<div class="mt-4">
+						</p>
+						<div className="mb-4 h-1/4">
 							{categories &&
 								categories.map((category) => (
 									<span 
 										key={category}
-										class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-xs dark:bg-blue-900 dark:text-blue-300"
+										className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-xs dark:bg-blue-900 dark:text-blue-300"
 									>
 										{category}
 									</span>
