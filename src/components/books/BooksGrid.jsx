@@ -1,11 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { FiSearch } from 'react-icons/fi';
+import Button from "../reusable/Button";
 import BookItem from './BookItem';
+import BookFormModal from "./BookFormModal";
+import ModalContext from '../../context/ModalContext';
 import { getBooks } from "../../services/books-api";
 
 const BooksGrid = () => {
 	const [books, setBooks] = useState([]);
 	const [searchParam, setSearchParam] = useState("");
+	const { showBookModal, toogleBookModal } = useContext(ModalContext);
 
 	useEffect(() => {
 		let isCancelled = false;
@@ -43,7 +47,7 @@ const BooksGrid = () => {
                         mb-3
                         "
 				>
-					Search books by title, author or isbn
+					Search books by title or isbn
 				</h3>
 				<div
 					className="
@@ -97,12 +101,25 @@ const BooksGrid = () => {
 							aria-label="Name"
 						/>
 					</div>
+
+					<div className="hidden sm:flex justify-between items-center flex-col md:flex-row">
+						<div className="hidden md:flex">
+							<span
+								onClick={toogleBookModal}
+								className="text-md font-general-medium bg-indigo-500 hover:bg-indigo-600 text-white shadow-sm rounded-md px-5 py-2.5 duration-300"
+								aria-label="Add Book Button"
+							>
+								<Button title="Add New Book" />
+							</span>
+						</div>
+					</div>
 				</div>
 			</div>
 
 			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-6 sm:gap-10">
 				{books.map((book) => (
 					<BookItem
+						key={book._id}
 						id={book._id}
 						title={book.title}
 						authors={book.authors}
@@ -110,6 +127,14 @@ const BooksGrid = () => {
 						thumbnailUrl={book.thumbnailUrl}
 					/>
 				))}
+			</div>
+
+			{/* Book form modal */}
+			<div>
+				{showBookModal ? (
+					<BookFormModal closeModal={toogleBookModal} />
+				) : null}
+				{showBookModal ? toogleBookModal : null}
 			</div>
 		</section>
 	);
