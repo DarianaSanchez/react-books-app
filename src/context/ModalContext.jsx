@@ -10,6 +10,7 @@ export const ModalViewProvider = ({ children }) => {
 		setShowBookModal(!showBookModal);
 	}
 	const toogleAuthorModal = () => {
+		if (showAuthorModal) localStorage.removeItem('current-author');
 		setShowAuthorModal(!showAuthorModal);
 	}
 
