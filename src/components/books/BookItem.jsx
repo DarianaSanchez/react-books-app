@@ -14,7 +14,7 @@ const BookItem = ({ id, title, authors, categories, thumbnailUrl }) => {
 			}}
 		>
 			<Link to={`/books/${id}`} key={id} aria-label="Single Book">
-				<div className="relative flex flex-row w-full h-full rounded-xl shadow-lg hover:shadow-xl bg-clip-border cursor-pointer mb-10 sm:mb-0 bg-secondary-light dark:bg-ternary-dark">
+				<div className="relative flex flex-row w-full h-full rounded-xl shadow-lg hover:shadow-xl bg-clip-border cursor-pointer mb-10 sm:mb-0 bg-secondary-light">
 					<div className="relative m-0 w-2/5 rounded-xl bg-white bg-clip-border text-gray-700">
 						<img
 							src={thumbnailUrl || NoBookCover}
@@ -34,7 +34,7 @@ const BookItem = ({ id, title, authors, categories, thumbnailUrl }) => {
 								categories.map((category) => (
 									<span 
 										key={category}
-										className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-xs dark:bg-blue-900 dark:text-blue-300"
+										className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-xs"
 									>
 										{category}
 									</span>

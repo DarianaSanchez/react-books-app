@@ -1,18 +1,19 @@
-import { useRef, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useRef, useState, useEffect, useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiX } from 'react-icons/fi';
 import Button from '../reusable/Button';
+import CollectionsContext from '../../context/CollectionsContext';
 import { getAuthors, addBook, updateBook, getBooks } from '../../services/books-api';
 
 
 const BookFormModal = ({ closeModal }) => {
+	const { id } = useParams();
 	const title = useRef();
 	const isbn = useRef();
-	const [authors, setAuthors] = useState([]);
 	const [selectedAuthors, setSelectedAuthors] = useState([]);
 	const [alertMessage, setAlertMessage] = useState("");
-	const { id } = useParams();
+	const { setBooks, authors, setAuthors } = useContext(CollectionsContext);
 
 	useEffect(() => {
 		let isCancelled = false;
@@ -35,14 +36,14 @@ const BookFormModal = ({ closeModal }) => {
 
 		return () => isCancelled = true;
 		
-	}, [id]);
+	}, [id, setAuthors]);
 
 	const handleChangeAuthors = (event) => {
 		const selected = Array.from(event.target.selectedOptions);
 		setSelectedAuthors(selected.map((x) => x.value));
 	}
 
-	const handleSubmit = async (event) => {
+	const handleSubmit = (event) => {
 		event.preventDefault();
 		setAlertMessage("");
 
@@ -53,8 +54,8 @@ const BookFormModal = ({ closeModal }) => {
 			if (res.error) {
 				setAlertMessage(res.error);
 			} else {
+				getBooks().then((result) => setBooks(result));
 				closeModal();
-				window.location.reload();
 			}
 		}
 

@@ -3,6 +3,7 @@ import Button from '../components/reusable/Button';
 import AppBanner from '../components/shared/AppBanner';
 import BooksGrid from '../components/books/BooksGrid';
 import { ModalViewProvider } from '../context/ModalContext';
+import { CollectionsProvider } from '../context/CollectionsContext';
 
 
 const Home = () => {
@@ -10,7 +11,9 @@ const Home = () => {
 		<div className="container mx-auto">
 			<AppBanner />
 			<ModalViewProvider>
-				<BooksGrid />
+				<CollectionsProvider>
+					<BooksGrid />
+				</CollectionsProvider>
 			</ModalViewProvider>
 
 			<div className="mt-8 sm:mt-10 flex justify-center">

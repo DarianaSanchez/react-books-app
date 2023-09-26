@@ -4,24 +4,25 @@ import Button from "../reusable/Button";
 import BookItem from './BookItem';
 import BookFormModal from "./BookFormModal";
 import ModalContext from '../../context/ModalContext';
+import CollectionsContext from '../../context/CollectionsContext';
 import { getBooks } from "../../services/books-api";
 
 const BooksGrid = () => {
-	const [books, setBooks] = useState([]);
-	const [searchParam, setSearchParam] = useState("");
+	const { books, setBooks } = useContext(CollectionsContext);
 	const { showBookModal, toogleBookModal } = useContext(ModalContext);
+	const [searchParam, setSearchParam] = useState("");
 
 	useEffect(() => {
 		let isCancelled = false;
 
 		getBooks()
-			.then((result) => {
-				if (!isCancelled) setBooks(result);
-			});
+		.then((result) => {
+			if (!isCancelled) setBooks(result);
+		});
 
 		return () => isCancelled = true;
 		
-	}, []);
+	}, [setBooks]);
 
 	const handleChange = (event) => {
 		const param = event.target.value.trim();
