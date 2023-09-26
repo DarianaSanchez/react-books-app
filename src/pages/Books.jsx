@@ -1,10 +1,13 @@
 import BooksGrid from '../components/books/BooksGrid';
+import { ModalViewProvider } from '../context/ModalContext';
 
 const Books = () => {
 	return (
-		<div className="container mx-auto">
-			<BooksGrid />
-		</div>
+		<ModalViewProvider>
+			<div className="container mx-auto">
+				<BooksGrid />
+			</div>
+		</ModalViewProvider>
 	);
 };
 
