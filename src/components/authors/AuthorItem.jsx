@@ -22,7 +22,7 @@ const BookItem = ({ id, firstName, lastName }) => {
 			}}
 		>
 			<div className="relative flex flex-row w-full h-full rounded-xl shadow-lg bg-clip-border cursor-pointer mb-10 sm:mb-0 bg-secondary-light px-4">
-				<div className="relative m-0 w-2/5 rounded-xl bg-white bg-clip-border text-gray-700">
+				<div className="relative m-0 sm:w-2/3 rounded-xl bg-white bg-clip-border text-gray-700">
 					<p className="text-md text-ternary-dark dark:text-ternary-light mb-4 h-1/2">
 						First Name: <span className="font-semibold">{firstName}</span>
 					</p>
@@ -30,7 +30,7 @@ const BookItem = ({ id, firstName, lastName }) => {
 						Last Name: <span className="font-semibold">{lastName}</span>
 					</p>
 				</div>
-				<div className="text-center px-4 py-6 max-w-sm h-full items-center">
+				<div className="text-center items-center sm:w-1/3 max-w-sm h-full px-4 py-6">
 					<div onClick={handleClickEdit} className="flex justify-end md:flex-row">
 						<span
 							className="text-md 

@@ -73,7 +73,7 @@ const AuthorsGrid = () => {
                                 cursor-pointer
                                 "
 						>
-							<FiSearch className="text-ternary-dark dark:text-ternary-light w-5 h-5"></FiSearch>
+							<FiSearch className="text-ternary-dark dark:text-ternary-light w-5 h-5" />
 						</span>
 						<input
 							value={searchParam}

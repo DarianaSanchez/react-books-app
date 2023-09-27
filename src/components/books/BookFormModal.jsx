@@ -29,7 +29,7 @@ const BookFormModal = ({ closeModal }) => {
 				if (!isCancelled) {
 					title.current.value = result.title;
 					isbn.current.value = result.isbn;
-					setSelectedAuthors(result.authors.map(x => x._id));
+					setSelectedAuthors(result.authors.map(x => x._id.$oid));
 				}
 			});
 		}
@@ -150,7 +150,7 @@ const BookFormModal = ({ closeModal }) => {
 										className="w-full px-5 py-2 border dark:border-secondary-dark rounded-md text-md bg-secondary-light"
 										multiple
 									>
-									<option value={null} disabled>Seleccione autores...</option>
+									<option disabled>Seleccione autores...</option>
 									{
 										authors.map((x) => <option key={x._id} value={x._id}>{x.full_name}</option>)
 									}
@@ -184,7 +184,7 @@ const BookFormModal = ({ closeModal }) => {
 										hover:bg-indigo-600
 										rounded-md
 										focus:ring-1 focus:ring-indigo-900 duration-500"
-									aria-label="Submit Request"
+									aria-label="Submit Form"
 								>
 									<Button title="Save" />
 								</span>

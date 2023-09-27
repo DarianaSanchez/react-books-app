@@ -9,7 +9,7 @@ import { getBooks } from "../services/books-api";
 
 const BookSingle = () => {
 	const { id } = useParams();
-	const [book, setBook] = useState([]);
+	const [book, setBook] = useState({});
 
 	useEffect(() => {
 		let isCancelled = false;
