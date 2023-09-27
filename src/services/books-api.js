@@ -9,7 +9,10 @@ export async function getBooks(bookId = false, searchParam = false) {
             route = `/books?search_param=${searchParam}`
         }
 
-        const response = await fetch(`${URL}${route}`);
+        const response = await fetch(`${URL}${route}`, {
+            method: "GET",
+            referrerPolicy: "unsafe_url",
+        });
         return await response.json();
     } catch (err) {
         console.error(err);
