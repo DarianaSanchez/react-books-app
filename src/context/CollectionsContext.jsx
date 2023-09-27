@@ -4,6 +4,7 @@ const CollectionsContext = createContext();
 
 export const CollectionsProvider = ({ children }) => {
 	const [books, setBooks] = useState([]);
+	const [singleBook, setSingleBook] = useState({});
 	const [authors, setAuthors] = useState([]);
 
 	return (
@@ -11,6 +12,8 @@ export const CollectionsProvider = ({ children }) => {
 			value={{
 				books,
 				setBooks,
+				singleBook,
+				setSingleBook,
 				authors,
 				setAuthors,
 			}}

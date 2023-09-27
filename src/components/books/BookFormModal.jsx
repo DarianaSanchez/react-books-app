@@ -1,19 +1,19 @@
 import { useRef, useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiX } from 'react-icons/fi';
-import Button from '../reusable/Button';
 import CollectionsContext from '../../context/CollectionsContext';
 import { getAuthors, addBook, updateBook, getBooks } from '../../services/books-api';
 
 
 const BookFormModal = ({ closeModal }) => {
+	const navigate = useNavigate();
 	const { id } = useParams();
 	const title = useRef();
 	const isbn = useRef();
 	const [selectedAuthors, setSelectedAuthors] = useState([]);
 	const [alertMessage, setAlertMessage] = useState("");
-	const { setBooks, authors, setAuthors } = useContext(CollectionsContext);
+	const { setBooks, authors, setAuthors, setSingleBook } = useContext(CollectionsContext);
 
 	useEffect(() => {
 		let isCancelled = false;
@@ -54,8 +54,14 @@ const BookFormModal = ({ closeModal }) => {
 			if (res.error) {
 				setAlertMessage(res.error);
 			} else {
-				getBooks().then((result) => setBooks(result));
 				closeModal();
+
+				if (id) {
+					getBooks(id).then((result) => setSingleBook(result));
+				} else {
+					getBooks().then((result) => setBooks(result));
+					navigate(`/books/${res._id}`);
+				}
 			}
 		}
 
@@ -158,9 +164,8 @@ const BookFormModal = ({ closeModal }) => {
 								</div>
 							</div>
 							<div className="modal-footer mt-2 sm:mt-0 py-5 px-8 border0-t text-right">
-								<span
+								<button
 									onClick={closeModal}
-									type="button"
 									className="px-4
 									sm:px-6
 									py-2 bg-gray-600
@@ -170,11 +175,10 @@ const BookFormModal = ({ closeModal }) => {
 									focus:ring-1 focus:ring-indigo-900 duration-500"
 									aria-label="Close Modal"
 								>
-									<Button title="Close" />
-								</span>
-								<span
+									Close
+								</button>
+								<button
 									type="submit"
-									role="button"
 									className="px-4
 										sm:px-6
 										py-2
@@ -186,8 +190,8 @@ const BookFormModal = ({ closeModal }) => {
 										focus:ring-1 focus:ring-indigo-900 duration-500"
 									aria-label="Submit Form"
 								>
-									<Button title="Save" />
-								</span>
+									Save
+								</button>
 							</div>
 						</form>
 					</div>
