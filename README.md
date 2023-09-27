@@ -1,28 +1,43 @@
-# React & TailwindCSS Template
+## React Books App
+
+Frontend application to perform CRUD operations on books and authors using an API
 
 
-## Demo URL
+### Backend Repository (API)
 
-[https://react-tailwindcss-portfolio.netlify.app](https://react-tailwindcss-portfolio.netlify.app)
+[Python Books API](https://github.com/DarianaSanchez/python-books-api)
 
 
-## Setup
+### Live Demo
 
-1. Make sure you have Node JS installed. If you don't have it:
+[https://us-east-2.console.aws.amazon.com/](https://us-east-2.console.aws.amazon.com/)
+
+
+### Technical Breakdown
+
+- JS Framework: Reactjs 18.1.0
+- CSS Framework: TailwindCSS
+- Build Tool: Yarn
+- Template: [Design template](https://react-tailwindcss-portfolio.netlify.app)
+
+
+### Setup
+
+1. Make sure you have Nodejs and NPM installed:
 
 -   [Download it from nodejs.org](https://nodejs.org)
 -   [Install it using NVM](https://github.com/nvm-sh/nvm)
 
-2. Install packages and dependencies:
+2. Make sure you have yarn installed, you can install it using npm:
+
+```
+npm install yarn
+```
+
+2. Install packages and dependencies of the application:
 
 ```
 yarn
-```
-
-3. NOTE: If you don't have yarn installed, you can install it globally using npm:
-
-```
-npm install --global yarn
 ```
 
 4. Start a local dev server at `http://localhost:3000`:
@@ -30,3 +45,8 @@ npm install --global yarn
 ```
 yarn start
 ```
+
+&emsp;&emsp;
+#### Developer
+
+[Dariana Sanchez](https://www.linkedin.com/in/darianamsanchez/)
