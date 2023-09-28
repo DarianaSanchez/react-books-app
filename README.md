@@ -10,7 +10,7 @@ Frontend application to perform CRUD operations on books and authors using an AP
 
 ### Live Demo
 
-[https://us-east-2.console.aws.amazon.com/](https://us-east-2.console.aws.amazon.com/)
+[https://main.d3sykqvxoxzfo5.amplifyapp.com](https://main.d3sykqvxoxzfo5.amplifyapp.com)
 
 
 ### Technical Breakdown
