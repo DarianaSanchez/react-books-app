@@ -9,10 +9,7 @@ export async function getBooks(bookId = false, searchParam = false) {
             route = `/books?search_param=${searchParam}`
         }
 
-        const response = await fetch(`${URL}${route}`, {
-            method: "GET",
-            referrerPolicy: "unsafe-url",
-        });
+        const response = await fetch(`${URL}${route}`);
         return await response.json();
     } catch (err) {
         console.error(err);
@@ -29,7 +26,6 @@ export async function addBook(title, isbn, authors = []) {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                referrerPolicy: "unsafe-url",
             },
             body: JSON.stringify(postData),
         });
@@ -54,7 +50,6 @@ export async function updateBook(bookId, bookValues) {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                referrerPolicy: "unsafe-url",
             },
             body: JSON.stringify(bookValues),
         });
@@ -76,10 +71,7 @@ export async function getAuthors(authorId = false, searchParam = false) {
             route = `/authors?search_param=${searchParam}`
         }
 
-        const response = await fetch(`${URL}${route}`, {
-            method: "GET",
-            referrerPolicy: "unsafe-url",
-        });
+        const response = await fetch(`${URL}${route}`);
         return await response.json();
     } catch (err) {
         console.error(err);
@@ -96,7 +88,6 @@ export async function addAuthor(firstName, lastName = '') {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                referrerPolicy: "unsafe-url",
             },
             body: JSON.stringify(postData),
         });
@@ -121,7 +112,6 @@ export async function updateAuthor(authorId, authorValues) {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                referrerPolicy: "unsafe-url",
             },
             body: JSON.stringify(authorValues),
         });
